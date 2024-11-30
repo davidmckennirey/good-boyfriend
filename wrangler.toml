@@ -18,3 +18,7 @@ binding = "AI"
 [[kv_namespaces]]
 binding = "GIRLFRIEND_LOCATION"
 id = "61ac06c4b11a42c3acdbcacdebd986ce"
+
+[vars]
+MODEL_ID = "@cf/meta/llama-3.1-8b-instruct"
+PROMPT_INSTRUCTIONS = "Write a sweet good morning message for my girlfriend that also gives her a weather update (including helpful things like wearing a raincoat if it's raining, or staying shady if it's hot). Do not include any foreword, just give me the message directly. Do not make it overly romantic, keep it light and fun. Keep it to around 5 sentences. Use one or two emojis to make it fun! Do not make any plans or promise anything in the message. Don't include quotation marks."
