@@ -14,10 +14,10 @@ async function fetchWeather(env) {
 // Function to generate a campy good morning message
 async function getMorningMessage(env, weatherDescription) {
 	const location = await getLocation(env);
-	const prompt = `Write a sweet good morning message for my girlfriend that also gives her a weather update (including helpful things like wearing a raincoat if it's raining, or staying shady if it's hot). The weather for today is: ${weatherDescription}\n\nInclude the current city, which is ${location.city}. Do not include any foreword, just give me the message directly. Do not make it overly romantic, keep it light and fun. Keep it to around 5 sentences. Use one or two emojis to make it fun! Do not make any plans or promise anything in the message.`;
+	const prompt = `Write a sweet good morning message for my girlfriend that also gives her a weather update (including helpful things like wearing a raincoat if it's raining, or staying shady if it's hot). The weather for today is: ${weatherDescription}\n\nInclude the current city, which is ${location.city}. Do not include any foreword, just give me the message directly. Do not make it overly romantic, keep it light and fun. Keep it to around 5 sentences. Use one or two emojis to make it fun! Do not make any plans or promise anything in the message. Don't include quotation marks.`;
 	const modelId = '@cf/meta/llama-3.1-8b-instruct';
 	const response = await env.AI.run(modelId, { prompt: prompt });
-	return response.response.trim().replace(/^"(.*)"$/, '$1');
+	return response.response.trim();
 }
 
 // Function to send the message via Pushover API
