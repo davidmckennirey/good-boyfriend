@@ -14,3 +14,7 @@ enabled = true
 # Docs: https://developers.cloudflare.com/workers/wrangler/configuration/#workers-ai
 [ai]
 binding = "AI"
+
+[[kv_namespaces]]
+binding = "GIRLFRIEND_LOCATION"
+id = "61ac06c4b11a42c3acdbcacdebd986ce"
