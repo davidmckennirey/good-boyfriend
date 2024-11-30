@@ -5,16 +5,16 @@ const router = AutoRouter();
 // Function to fetch the weather
 async function fetchWeather(env) {
 	const location = await getLocation(env);
-	const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${location.lat}&lon=${location.lon}&appid=${env.WEATHER_API_KEY}&units=imperial`;
+	const weatherUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${location.lat}&lon=${location.lon}&appid=${env.WEATHER_API_KEY}&units=imperial&exclude=current,minutely,hourly,alerts`;
 	const weatherResponse = await fetch(weatherUrl);
 	if (!weatherResponse.ok) throw new Error('Failed to fetch weather');
 	return await weatherResponse.json();
 }
 
-// Function to generate a campy good morning message
+// Function to generate a good morning message using ~AI~
 async function getMorningMessage(env, weatherDescription) {
 	const location = await getLocation(env);
-	const prompt = `${env.PROMPT_INSTRUCTIONS}. Include the current city, which is ${location.city}.\nThe weather for today is: ${weatherDescription}`;
+	const prompt = `${env.PROMPT_INSTRUCTIONS}\n\nInclude the current city, which is ${location.city}.\nThe weather for today (from https://openweathermap.org/api/one-call-3) is: ${JSON.stringify(weatherDescription.daily[0])}`;
 	const response = await env.AI.run(env.MODEL_ID, { prompt: prompt });
 	return response.response.trim();
 }
@@ -39,8 +39,7 @@ async function sendNotification(env, message) {
 // Main function to handle the boyfriend duties
 async function handleBoyfriendDuties(env) {
 	const weatherData = await fetchWeather(env);
-	const weatherDescription = `${weatherData.weather[0].description}, with a high of ${Math.round(weatherData.main.temp)}°F.`;
-	const goodMorningMessage = await getMorningMessage(env, weatherDescription);
+	const goodMorningMessage = await getMorningMessage(env, weatherData);
 	const sendSuccess = await sendNotification(env, goodMorningMessage);
 
 	if (sendSuccess) {
