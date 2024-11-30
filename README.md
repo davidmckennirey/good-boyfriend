@@ -1,5 +1,5 @@
 # Good Boyfriend
-I want to be a good boyfriend and send my girlfriend the weather (where ever she is) along with a warm good morning message. However, I am also a nerd with a intrinsic desire to automate everything. So I wrote a bot that will pull the current weather for my girlfriends (saved) location and, using the magic of *~AI~*, will generate me a "good morning" weather update for her.
+I want to be a good boyfriend and send my girlfriend the weather (where ever she is) along with a warm good morning message. However, I am also a nerd with a intrinsic desire to automate everything. So I wrote a bot that will pull the current weather for my girlfriends (saved) location and, using the magic of *AI*, will generate me a "good morning" weather update for her.
 
 She thinks its hilarious.
 
